@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Форма записи на приём</title>
+    <style>
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        button {
+            width: 100%;
+            background-color: #67ACCF;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color:#67ACCF;
+        }
+        body {
+            background-color:#67ACCF;
+        }
+        form {
+            background-color: white
+        }
+      
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Запись на приём к врачу</h1>
+    
+    <div class="form">
+        <form action="" method="post">
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+            
+            <label for="phone">Номер телефона:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Введите ваш номер телефона" required>
+            
+            <label for="email">Электронная почта:</label>
+            <input type="email" id="email" name="email" placeholder="Введите вашу электронную почту" required>
+            
+            <label for="doctor">Выберите врача:</label>
+            <select id="doctor" name="doctor" required>
+                <option value="">-- Выберите врача --</option>
+                <option value="Иванов Иван Иванович">Иванов Иван Иванович</option>
+                <option value="Петров Петр Петрович">Петров Петр Петрович</option>
+                <option value="Сидорова Анна Васильевна">Сидорова Анна Васильевна</option>
+            </select>
+            
+            <label for="date">Желаемая дата приёма:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="time">Желаемое время приёма:</label>
+            <input type="time" id="time" name="time" required>
+            
+            <label for="message">Дополнительная информация:</label>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            
+            <button type="submit">Отправить заявку</button>
+        </form>
+    </div>
+    <div class="error-message" id="error-message"></div>
+    <div class="success-message" id="success-message">Ваше обращение успешно отправлено!</div>
+</div>
+
+<script>
+document.getElementById('appointment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const doctor = document.getElementById('doctor').value.trim();
+    const date = document.getElementById('date').value.trim();
+
+    if (!name || !phone || !doctor || !date) {
+        document.getElementById('error-message').innerText = 'Пожалуйста, заполните все поля.';
+        document.getElementById('error-message').style.display = 'block';
+        return;
+    }
+
+    
+    document.getElementById('error-message').style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+});
+</script>
+</body>
+</html>
+
